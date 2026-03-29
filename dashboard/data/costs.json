@@ -6,6 +6,8 @@
     { "date": "2026-03-28", "platform": "GCP", "project": "prod", "resource": "BigQuery", "cost_usd": 4.20, "metadata": {} },
     { "date": "2026-03-27", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 16.80, "metadata": {} },
     { "date": "2026-03-27", "platform": "GCP", "project": "prod", "resource": "Cloud Storage", "cost_usd": 1.10, "metadata": {} },
-    { "date": "2026-03-26", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 20.00, "metadata": {} }
+    { "date": "2026-03-26", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 20.00, "metadata": {} },
+    { "date": "2026-03-28", "platform": "Claude", "project": "prod", "resource": "claude-3-5-sonnet", "cost_usd": 12.80, "metadata": {} },
+    { "date": "2026-03-27", "platform": "Vercel", "project": "prod", "resource": "Serverless Functions", "cost_usd": 2.40, "metadata": {} }
   ]
 }
