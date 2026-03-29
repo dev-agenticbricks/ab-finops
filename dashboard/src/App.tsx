@@ -7,7 +7,7 @@ import { PlatformBreakdown } from './components/PlatformBreakdown';
 import { CostTable } from './components/CostTable';
 import costsData from '../data/costs.json';
 
-const data = costsData as unknown as CostsData;
+const data = costsData as CostsData;
 
 const PLATFORM_COLORS: Record<string, string> = {
   GCP: 'text-blue-400',
