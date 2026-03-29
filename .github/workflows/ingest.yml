@@ -1,0 +1,42 @@
+name: Ingest Cost Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Run ingestion
+        run: npm run ingest
+        env:
+          GCP_PROJECT_ID: agenticbricks-finops
+          BILLING_DATASET: billing_export
+
+      - name: Commit updated costs.json
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add dashboard/data/costs.json
+          git diff --staged --quiet || git commit -m "chore: update costs.json [skip ci]"
+          git push
