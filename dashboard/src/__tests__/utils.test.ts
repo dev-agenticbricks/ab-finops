@@ -47,8 +47,10 @@ describe('sumCostsByPlatform', () => {
 describe('getDailyTotals', () => {
   it('returns one entry per date sorted ascending', () => {
     const result = getDailyTotals(records);
-    expect(result.length).toBeGreaterThan(0);
-    expect(result[0].date < result[result.length - 1].date).toBe(true);
+    expect(result.length).toBe(3);
+    for (let i = 1; i < result.length; i++) {
+      expect(result[i - 1].date <= result[i].date).toBe(true);
+    }
   });
 });
 

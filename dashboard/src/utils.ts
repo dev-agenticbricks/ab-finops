@@ -1,6 +1,6 @@
-import type { CostRecord } from './types';
+import type { CostRecord, DateRange } from './types';
 
-export function filterByDays(records: CostRecord[], days: number): CostRecord[] {
+export function filterByDays(records: CostRecord[], days: DateRange): CostRecord[] {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - days);
   const cutoffStr = cutoff.toISOString().slice(0, 10);
