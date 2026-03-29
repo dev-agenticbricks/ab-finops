@@ -1,0 +1,10 @@
+{
+  "name": "ab-finops",
+  "private": true,
+  "workspaces": ["ingestion", "dashboard"],
+  "scripts": {
+    "ingest": "npm run ingest -w ingestion",
+    "export": "npm run export -w ingestion",
+    "test": "npm run test -w ingestion && npm run test -w dashboard"
+  }
+}

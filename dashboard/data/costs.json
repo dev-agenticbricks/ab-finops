@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-03-29T06:00:00.000Z",
+  "window_days": 90,
+  "records": [
+    { "date": "2026-03-28", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 18.40, "metadata": {} },
+    { "date": "2026-03-28", "platform": "GCP", "project": "prod", "resource": "BigQuery", "cost_usd": 4.20, "metadata": {} },
+    { "date": "2026-03-27", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 16.80, "metadata": {} },
+    { "date": "2026-03-27", "platform": "GCP", "project": "prod", "resource": "Cloud Storage", "cost_usd": 1.10, "metadata": {} },
+    { "date": "2026-03-26", "platform": "GCP", "project": "prod", "resource": "Cloud Run", "cost_usd": 20.00, "metadata": {} }
+  ]
+}
