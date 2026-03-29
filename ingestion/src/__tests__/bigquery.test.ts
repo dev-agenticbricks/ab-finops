@@ -32,6 +32,8 @@ const sampleRecords: CostRecord[] = [
 
 beforeEach(() => {
   vi.clearAllMocks();
+  // Note: GCP_PROJECT_ID is read at module load time (bq is already instantiated).
+  // This env var has no effect on the mocked BigQuery client in tests.
   process.env.GCP_PROJECT_ID = 'test-project';
 });
 
@@ -80,7 +82,9 @@ describe('upsertCosts', () => {
 
 describe('queryCosts', () => {
   it('returns records from the last N days', async () => {
-    mockQuery.mockResolvedValueOnce([sampleRecords]);
+    // BigQuery returns metadata as a JSON string; queryCosts deserialises it.
+    const rawRows = sampleRecords.map(r => ({ ...r, metadata: JSON.stringify(r.metadata) }));
+    mockQuery.mockResolvedValueOnce([rawRows]);
 
     const results = await queryCosts(30);
 

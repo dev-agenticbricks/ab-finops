@@ -64,5 +64,8 @@ export async function queryCosts(windowDays: number): Promise<CostRecord[]> {
     params: { window_days: windowDays },
     location: 'US',
   });
-  return rows as CostRecord[];
+  return (rows as Array<Omit<CostRecord, 'metadata'> & { metadata: string }>).map(r => ({
+    ...r,
+    metadata: JSON.parse(r.metadata ?? '{}') as Record<string, unknown>,
+  }));
 }
