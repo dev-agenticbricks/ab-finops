@@ -38,8 +38,8 @@ export function CostTable({ records }: CostTableProps) {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((r, i) => (
-              <tr key={i} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+            {filtered.map((r) => (
+              <tr key={`${r.date}-${r.platform}-${r.resource}`} className="border-b border-slate-700/50 hover:bg-slate-700/30">
                 <td className="py-2 text-slate-400">{r.date}</td>
                 <td className="py-2 text-slate-300">{r.platform}</td>
                 <td className="py-2 text-slate-200">{r.resource}</td>

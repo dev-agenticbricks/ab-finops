@@ -28,7 +28,7 @@ export function PlatformBreakdown({ costs }: PlatformBreakdownProps) {
       <h3 className="text-xs text-slate-400 uppercase tracking-wide mb-3">By Platform</h3>
       <ul className="space-y-2">
         {entries.map(([platform, cost]) => {
-          const pct = total > 0 ? Math.round((cost / total) * 100) : 0;
+          const pct = total > 0 ? parseFloat(((cost / total) * 100).toFixed(1)) : 0;
           const bar = PLATFORM_COLORS[platform] ?? 'bg-slate-400';
           return (
             <li key={platform}>
