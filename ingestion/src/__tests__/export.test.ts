@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import path from 'path';
 
 const mockQueryCosts = vi.hoisted(() => vi.fn());
 const mockWriteFileSync = vi.hoisted(() => vi.fn());
@@ -24,7 +25,7 @@ const sampleRecords: CostRecord[] = [
   { date: '2026-03-28', platform: 'GCP', project: 'prod', resource: 'Cloud Run', cost_usd: 10.0, metadata: {} },
 ];
 
-beforeEach(() => vi.clearAllMocks());
+beforeEach(() => { vi.clearAllMocks(); });
 
 describe('exportToJson', () => {
   it('writes costs.json with correct structure', async () => {
@@ -36,6 +37,10 @@ describe('exportToJson', () => {
     expect(mockWriteFileSync).toHaveBeenCalledWith(
       '/tmp/costs.json',
       expect.stringContaining('"window_days": 90'),
+    );
+    expect(mockMkdirSync).toHaveBeenCalledWith(
+      path.dirname('/tmp/costs.json'),
+      { recursive: true },
     );
     const written = JSON.parse(mockWriteFileSync.mock.calls[0][1] as string);
     expect(written.records).toHaveLength(1);
